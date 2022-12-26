@@ -46,7 +46,12 @@ export default class OpenFilePlg extends Plugin {
 		if (os.type() === "Windows_NT") {
 			runCMD(`cd /d ${cwd} && ${by} ./"${curFilePath}"`)
 		} else {
-			runCMD(`cd /${cwd} && ${by} "${curFilePath}"`)
+			//runCMD(`cd /${cwd} && ${by} "${curFilePath}"`)
+			// I don't want to install and configure MacVIM, I want to open in iTerm2 in vim
+			// To do this I copied some Applescript from https://apple.stackexchange.com/a/444250
+			// I copied the procedure from here https://www.mattcrampton.com/blog/doubleclick_to_open_in_vim_on_osx/ to create TerminalVimOpen.app
+			// Modifying this plugin to launch this Applescript stub (losing VS Code integration, but I don't care about that):
+			runCMD(`"/Applications/TerminalVimOpen.app//Contents/MacOS/Automator Application Stub" "/${cwd}/${curFilePath}"`);
 		}
 	}
 }
